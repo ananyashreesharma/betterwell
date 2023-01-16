@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@600;700&family=Josefin+Sans&family=Luxurious+Roman&family=Moon+Dance&family=The+Nautigal:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.home-page{
+    height: 100vh;
+    width: 100%;
+    background: url("https://media.giphy.com/media/Sbz02I91tDtACwfHpO/giphy.gif");
+    /* background: url("https://media.giphy.com/media/2YQr5RmVZMj6g/giphy.gif"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.home-wrapper{
+    position: relative;
+    top:10vh;
+}
+
+.quote-container{
+    position: relative;
+    top: 150px;
+    width: 60%;
+    height: 30vh;
+    text-align: center;
+}
+
+.quote-container h1{
+    font-size: 5em;
+    color: rgb(43, 26, 53);
+    font-family: 'Moon Dance', cursive;
+}
+.quote-container h2{
+    font-size: 6em;
+    color: rgb(43, 26, 53);
+    font-family: 'Dancing Script', cursive;    
+}
+
+
+/* css for third section of the website*/
+.Thirdsec{
+    height: 100vh;
+    width: 100%;
+}
+.ts-wrapper{
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+.ts-icon{
+    position:absolute;
+    height: 80vh;
+    width: 55%;
+    background-color: pink;
+    z-index: 100;
+    top: 10vh;
+}
+.ts-icon img{
+    height: 100%;
+    width: 100%;
+}
+
+.ts-info{
+    position: relative;
+    top: 30vh;
+    height: 70vh;
+    width: 60%;
+    background-color: rgb(4, 0, 36);
+    float: right;
+}
+.info-container{
+    height: 60vh;
+    width: 50%;
+    position: relative;
+    left: 30%;
+    top: 10%;
+    /* background-color: wheat; */
+}
+.ts-basic-info{
+    font-size: 1.3em;
+}
+.ts-basic-info em{
+    color: wheat;
+}
+
+.ts-basic-info-button{
+    position: relative;
+    width: 40%;
+    left: 30%;
+    top: 5vh;
+    text-align: center;
+}
+
+.ts-basic-info-button a{
+    color: wheat;
+    padding: 10px 20px;
+    border: 3px solid wheat;
+}
+
+/* styling the fourth section of the website */
+.fs-wrapper{
+    width: 100%;
+    height: 140vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.fs-container{
+    position: relative;
+    height: 50vh;
+    /* background-color: wheat; */
+    top: 10vh;
+    left: 20vh;
+    width: 60%;
+}
+
+.fs-first-heading{
+    position: relative;
+}
+
+.fs-first-heading h1{
+    font-size: 3em;
+}
+
+.fs-two-container{
+    position: relative;
+    height:80vh;
+    width: 100%;
+  
+}
+
+.fs-two-content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.fs-two-cntn1{
+    height: 60vh;
+    width: 40%;
+    background-color: rgb(43, 26, 53);
+    color:wheat;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.fs-two-cntn1 h1{
+    font-size: 3em;
+}
+
+.fs-two-cntn1 em{
+    font-size: 1.3em;
+}
+
+.fs-two-cntn2{
+    height: 60vh;
+    width: 40%;
+    background-color: rgb(43, 26, 53);
+}
+
+.fs-two-cntn2 img{
+    height: 100%;
+    width: 100%;
+}
+
+/* styling the footer */
+.footer{
+    height: 20vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer-heading{
+    position: relative;
+    font-size: 1.5em;
+    height: fit-content;
+    color: wheat;
+}
+
+.footer-content{
+    height: fit-content;
+    color: wheat;
+}
+
+.footer h3{
+    color: wheat;
+}
+
+
+@media (max-width:500px) {  
+    .home-wrapper{
+        width: 100%;
+    }    
+    /* .Thirdsec{
+        display: none;
+    }
+    .fs-wrapper{
+        display: none;
+    } */
+}

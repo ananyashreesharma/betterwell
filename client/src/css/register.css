@@ -1,0 +1,33 @@
+.register{
+    position: relative;
+    top: 10vh;
+    height: 100vh;
+    text-align: center;
+     /* background-image: url('https://images.unsplash.com/photo-1579600161224-cac5a2971069?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'); */
+    background:url('https://media.giphy.com/media/NPP4Z7wMIf0SA/giphy.gif');
+    background-size: cover;
+    margin-bottom: 10vh;
+}
+
+
+.reg-form{
+    height: 70vh;
+    width: 100vh;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.342);
+    /* background-image: url('https://images.unsplash.com/photo-1579600161224-cac5a2971069?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'); */
+}
+
+h1{
+    margin: 30px;
+}
+
+input{
+    width: 33%;
+    margin: 0 auto;
+}
+
+.red-btn{
+    width: 15%;
+}
+

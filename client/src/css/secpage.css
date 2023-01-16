@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.secpage{
+    height: 100vh;
+    position: relative;
+    
+}
+
+.secpage-wrapper{
+   width: 90%;
+   height: fit-content;
+   position: relative;
+   top: 20%;
+   left: 5%;
+
+}
+
+.secpage-heading{
+    margin-bottom: 20px;
+}
+
+.secpage-heading h1{
+    width: 60%;
+    font-size: 5em;
+}
+
+.secpage-info{
+    width: 60%;
+    font-size: 2em;
+}

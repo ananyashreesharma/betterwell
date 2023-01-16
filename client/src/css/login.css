@@ -1,0 +1,44 @@
+.register{
+    height: 100vh;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.login-form{
+    height: 70vh;
+    width: 40%;
+    margin: auto;
+    background:url('https://media.giphy.com/media/NPP4Z7wMIf0SA/giphy.gif');
+    background-size: cover;
+}
+
+h1{
+    margin: 0px auto;
+}
+
+.login-form-flex{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: auto;    
+
+}
+form{   
+    height: 40vh;
+    /* border: 3px solid black; */
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+input{
+    height: 7vh;
+}
+
+.button{
+    height: 5vh;
+    width: 50%;
+    margin: 0px auto;
+
+}
