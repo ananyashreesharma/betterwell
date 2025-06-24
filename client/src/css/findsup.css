@@ -1,16 +1,316 @@
 .fs-heading{
     width: 100%;
-    height: 10vh;
     text-align: center;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #FEF9E7 0%, #E8F8F5 100%);
+    color: #2E8B57;
+    margin-bottom: 2rem;
 }
 
 .findsup-comp{
     position: relative;
-    top: 10vh;
+    top: 0;
     margin-bottom: 10vh;
+    min-height: 90vh;
+    background: linear-gradient(135deg, #FEF9E7 0%, #E8F8F5 100%);
+    padding-top: 120px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .fs-heading h1{
     margin: 0;
-    font-size: 5em;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #2E8B57;
+}
+
+.fs-subtitle {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.8;
+    color: #556B2F;
+}
+
+.mental-health-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.05);
+    text-align: center;
+}
+
+.mental-health-intro h2 {
+    color: #2E8B57;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.mental-health-intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #556B2F;
+    margin: 0;
+}
+
+.support-sections {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.support-section {
+    margin-bottom: 3rem;
+}
+
+.support-section h3 {
+    font-size: 1.8rem;
+    color: #2E8B57;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Helpline Cards */
+.helpline-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.helpline-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease;
+    border-left: 4px solid #8FBC8F;
+}
+
+.helpline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.15);
+}
+
+.helpline-card h4 {
+    color: #2E8B57;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.helpline-card .phone {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #8FBC8F;
+    margin: 0.5rem 0;
+}
+
+.helpline-card p {
+    color: #556B2F;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Online Support Cards */
+.online-support-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.support-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease;
+    border-top: 4px solid #E8F8F5;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.15);
+}
+
+.support-card h4 {
+    color: #2E8B57;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.support-card p {
+    color: #556B2F;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.support-card a {
+    display: inline-block;
+    background: linear-gradient(135deg, #FEF9E7 0%, #E8F8F5 100%);
+    color: #2E8B57;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.support-card a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+}
+
+/* Support Groups */
+.support-groups-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.group-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.05);
+    transition: transform 0.2s ease;
+    border-right: 4px solid #F0FFF0;
+}
+
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.15);
+}
+
+.group-card h4 {
+    color: #2E8B57;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.group-card p {
+    color: #556B2F;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.group-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.group-card li {
+    color: #556B2F;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #F0FFF0;
+}
+
+.group-card li:last-child {
+    border-bottom: none;
+}
+
+/* Self-Help Resources */
+.self-help-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resource-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.05);
+    transition: transform 0.2s ease;
+    border-bottom: 4px solid #FEF9E7;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.15);
+}
+
+.resource-card h4 {
+    color: #2E8B57;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.resource-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resource-card li {
+    color: #556B2F;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #F0FFF0;
+}
+
+.resource-card li:last-child {
+    border-bottom: none;
+}
+
+/* Emergency Notice */
+.emergency-notice {
+    background: linear-gradient(135deg, #FEF9E7 0%, #E8F8F5 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+    box-shadow: 0 4px 6px rgba(46, 139, 87, 0.2);
+}
+
+.emergency-notice h3 {
+    color: #2E8B57;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.emergency-notice p {
+    color: #556B2F;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.emergency-notice strong {
+    font-weight: 700;
+    color: #2E8B57;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fs-heading h1 {
+        font-size: 2rem;
+    }
+    
+    .helpline-cards,
+    .online-support-cards,
+    .support-groups-cards,
+    .self-help-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .support-sections {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .findsup-comp {
+        padding-top: 120px;
+        width: 100%;
+    }
 }

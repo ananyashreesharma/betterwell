@@ -1,0 +1,19 @@
+{
+  "name": "betterwell",
+  "version": "1.0.0",
+  "description": "Better Wellness - Mental Health Support Platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd Server && npm start",
+    "client": "cd client && npm start",
+    "install-all": "npm install && cd Server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": ["mental-health", "wellness", "blog", "support"],
+  "author": "anil",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+} 

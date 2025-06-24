@@ -1,62 +1,52 @@
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 import '../css/navigation.css';
-import { Link } from 'react-router-dom';
-const Navigation = () =>{
+import { Link, useLocation } from 'react-router-dom';
 
-    const[showLinks, setshowLinks] = useState(false);
+const Navigation = () => {
+    const [showLinks, setShowLinks] = useState(false);
+    const location = useLocation();
 
     console.log(localStorage.getItem("name"))
-    const removeLocalStorage = () =>{
+    
+    const removeLocalStorage = () => {
         localStorage.removeItem("name");
         localStorage.removeItem("email");
         localStorage.removeItem("phone");
         localStorage.removeItem("password");
         localStorage.removeItem("_id");
+        localStorage.removeItem("token");
         window.location.href = '/';
     }
-    return(
-        
-        <div className='navigation-bar'>
-            <div className="navigation-wrapper">
-            <div className="left-navigation">
-                    <h1 className='brand-name'>Better-Wellness</h1>
-                </div>
-                
-                <div className="right-navigation" id={showLinks ? "hidden":""}>
-                       <ul>
-                           <li> <Link to="/">Home</Link> </li>
-                           {/* <li> <Link to="/blog">Read Blogs</Link> </li> */}
-                           <li> <Link to="/write-blogs">Write Blogs</Link> </li>
-                           <li> <Link to="/view-blogs">View Blogs</Link> </li>
-                           {/* <li> <Link to="/videos">Videos</Link> </li> */}
-                           <li> <Link to="/find-support">Find Support</Link> </li>
-                           
-                           
-                           
-                           {localStorage.getItem("name") ?
-                           <li onClick={removeLocalStorage}> Logout</li>
-                           : 
-                           <li> <Link to="/login">Login</Link> <Link to="/register">Register</Link>  </li>}
 
-                            {/* <li></li> */}
+    const toggleMenu = () => {
+        setShowLinks(!showLinks);
+    }
 
-                           {/* <li> <Link to="/login">Login</Link> </li>
-                           <li> <Link to="/register">Signup</Link> </li> */}
-                      
-                       </ul>
-           
-                </div>
-
-               
-                        
-
+    return (
+        <nav className='navbar'>
+            <div className="nav-container">
+                <Link to="/" className="nav-logo">Better-Wellness</Link>
+                <ul className={`nav-menu${showLinks ? ' active' : ''}`}>
+                    <li><Link to="/" className={`nav-link${location.pathname === '/' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Home</Link></li>
+                    <li><Link to="/write-blogs" className={`nav-link${location.pathname === '/write-blogs' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Write Blogs</Link></li>
+                    <li><Link to="/view-blogs" className={`nav-link${location.pathname === '/view-blogs' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>View Blogs</Link></li>
+                    <li><Link to="/find-support" className={`nav-link${location.pathname === '/find-support' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Find Support</Link></li>
+                    {localStorage.getItem("name") ? (
+                        <li><span className="nav-link" style={{cursor: 'pointer'}} onClick={removeLocalStorage}>Logout</span></li>
+                    ) : (
+                        <>
+                            <li><Link to="/login" className={`nav-link${location.pathname === '/login' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Login</Link></li>
+                            <li><Link to="/register" className={`nav-link${location.pathname === '/register' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Register</Link></li>
+                        </>
+                    )}
+                </ul>
+                <button className="nav-toggle" onClick={toggleMenu} aria-label="Toggle navigation menu">
+                    <span className="line"></span>
+                    <span className="line"></span>
+                    <span className="line"></span>
+                </button>
             </div>
-            <div className="nav-button" onClick={()=> setshowLinks(!showLinks)}>
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
-            </div>
-        </div>
+        </nav>
     )
 }
 

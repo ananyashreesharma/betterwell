@@ -1,91 +1,107 @@
-import React,{useEffect, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../../css/bloghome.css'
-import Navigation from '../navigation'
-import Blog from './Blog'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navigation from '../navigation';
+import '../../css/bloghome.css';
 
+const Homeblog = () => {
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-const Homeblog = ()=> {   
-const[blogs,setblogs] = useState([{
-    title:'',
-    description:'',
-    username:''
-}])
+    // Use environment-based API URL
+    const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://your-app-name.vercel.app/api' 
+        : 'http://localhost:5000/api';
 
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`${API_BASE_URL}/blogs`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch blogs');
+                }
+                const data = await response.json();
+                setBlogs(data);
+            } catch (err) {
+                console.error('Error fetching blogs:', err);
+                setError('Failed to load blogs');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-
-useEffect(()=>{
-    fetch("http://localhost:5000/api/blogs")
-    .then(res=>{
-        if(res.ok){
-            return res.json()
-        }
-    }).then(data=>{
-            setblogs(data)
-            console.log(data);
-    }).catch(err=>{
-        console.log(err);
-    });
-},[])
+        fetchBlogs();
+    }, [API_BASE_URL]);
 
     const navigate = useNavigate();
     const handleEdit = (e) =>{
         navigate(`/view-blog/${blogs._id}`)
     }
+    
+    if (loading) {
+        return (
+            <div>
+                <Navigation/>
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <h3>Loading blogs...</h3>
+                </div>
+            </div>
+        );
+    }
+    
+    if (error) {
+        return (
+            <div>
+                <Navigation/>
+                <div className="error-container">
+                    <h3>Oops! Something went wrong</h3>
+                    <p>{error}</p>
+                    <a href="/" className="btn-primary">Go Home</a>
+                </div>
+            </div>
+        );
+    }
+    
+    if(blogs.length === 0) {
+        return (
+            <div>
+                <Navigation/>
+                <div className="empty-blogs">
+                    <h3>No blogs yet</h3>
+                    <p>Be the first to share your thoughts and experiences!</p>
+                    <a href="/write-blogs" className="btn-primary">Write Your First Blog</a>
+                </div>
+            </div>
+        );
+    }
+    
     return (
-    <div>
-        <Navigation/>
-     
-    <div class="home-container">
-        
-        <div class="home-blogs-container">
-            <div class="blog-container-heading">
-                <h1>Better-Wellness Blogs</h1>
-                <p>Read and Write Blogs!</p>
+        <div>
+            <Navigation/>
+            <div className="blog-home-container">
+                <div className="blog-container-heading">
+                    <h1>Better-Wellness Blogs</h1>
+                    <p>Read and Write Blogs!</p>
+                </div>
+                <div className="blog-list">
+                    {(blogs || []).map(blog => (
+                        <div className="blog-card" key={blog._id}>
+                            <div className="blog-meta">
+                                <span className="blog-author">By {blog.username || 'Anonymous'}</span>
+                            </div>
+                            <div className="blog-title">{blog.title}</div>
+                            <div className="blog-content">
+                                {blog.description.length > 180 ? blog.description.slice(0, 180) + '...' : blog.description}
+                            </div>
+                            <a href={`/view-blog/${blog._id}`} className="read-more-btn">Read More</a>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div class="home-blog-start-heading">
-                <h1>Blogs!</h1>
-            </div>
-            
-             
-            <div class="blogs-wrapper">
-            {(blogs || []).map(blog=>(
-
-                
-                <div class="blog-box-style">
-                    <a class="blog-box-link" href={`/view-blog/${blog._id}`}>
-                    <input type="hidden"  value={blog._id} key={blog._id} id={blog._id} />
-                    
-                    <div class="blog-box-heading">
-                        <h2>{blog.title}</h2>
-                    </div>
-                    <div class="blog-box-desc">
-                        <p>
-                           {blog.description} 
-                        </p>
-                    </div>
-                    </a>
-        
-                    <div class="box-buttons">
-                        
-                    <a href="/update-blog?id=<%= blog[i]._id%>" class="box-btn-link">
-                        <span class="box-btn"><i class="fas fa-edit fa-lg"></i></span>
-                    </a>
-
-                    <a class="box-btn-link delete" data-id="">
-                        <span class="box-btn"><i class="fas fa-trash-alt fa-lg"></i></span>
-                    </a>      
-                    </div>
-
-                    
-
-                </div> 
-                ))}         
-            </div>
-            
         </div>
-    </div>
-    </div>
-  )
+    )
 }
+
 export default Homeblog;

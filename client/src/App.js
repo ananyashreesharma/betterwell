@@ -6,7 +6,7 @@ import Secpage from './Components/Home/secpage';
 import Fourthsec from './Components/Home/Fourthsec';
 import Login from './Components/login';
 import Footer from './Components/Footer';
-import {BrowserRouter,Route,Router, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Mainhome from './Components/Home/Homemain';
 import Blog from './Components/Blogs/Blog';
 import Newblog from './Components/Blogs/Newblog';
