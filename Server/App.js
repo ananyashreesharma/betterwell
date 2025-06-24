@@ -52,9 +52,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-//listening app on port
-app.listen(PORT,()=>{
-    console.log(`🚀 App listen on port http://localhost:${PORT}`)
-})
+// Only listen if not in Vercel environment
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT,()=>{
+        console.log(`🚀 App listen on port http://localhost:${PORT}`)
+    })
+}
 
 module.exports = app;

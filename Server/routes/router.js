@@ -3,7 +3,7 @@ const route = express.Router();
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { db } = require('../database/sqlite');
+const { getDb } = require('../database/sqlite');
 
 // JWT secret - in production, use environment variable
 const JWT_SECRET = 'secret123';
@@ -32,7 +32,7 @@ route.post('/register', async (req,res)=>{
     
     try{
         // Check if user already exists
-        db.get("SELECT * FROM users WHERE email = ?", [req.body.email], async (err, existingUser) => {
+        getDb.get("SELECT * FROM users WHERE email = ?", [req.body.email], async (err, existingUser) => {
             if (err) {
                 console.error('Database error:', err);
                 return res.status(500).json({message: "Server error. Please try again."});
@@ -46,7 +46,7 @@ route.post('/register', async (req,res)=>{
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             
             // Insert new user
-            db.run("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)", 
+            getDb.run("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)", 
                 [req.body.name, req.body.email, req.body.phone, hashedPassword], 
                 function(err) {
                     if (err) {
@@ -77,7 +77,7 @@ route.post('/register', async (req,res)=>{
 //LOGIN ROUTE
 route.post('/login', async (req, res)=>{
     try {
-        db.get("SELECT * FROM users WHERE email = ?", [req.body.email], async (err, user) => {
+        getDb.get("SELECT * FROM users WHERE email = ?", [req.body.email], async (err, user) => {
             if (err) {
                 console.error('Database error:', err);
                 return res.status(500).json({message: 'Server error'});
@@ -120,7 +120,7 @@ route.post('/login', async (req, res)=>{
 route.put('/api/users/:id',(req,res)=>{
     
     const id = req.params.id;
-    db.get("SELECT * FROM users WHERE id = ?", [id], (err, user) => {
+    getDb.get("SELECT * FROM users WHERE id = ?", [id], (err, user) => {
         if (err) {
             console.error('Database error:', err);
             return res.status(500).json({message: "Error fetching user"});
@@ -130,7 +130,7 @@ route.put('/api/users/:id',(req,res)=>{
             return res.status(404).json({message: "User not found"});
         }
         
-        db.run("UPDATE users SET name = ?, email = ?, phone = ? WHERE id = ?", 
+        getDb.run("UPDATE users SET name = ?, email = ?, phone = ? WHERE id = ?", 
             [req.body.name, req.body.email, req.body.phone, id], 
             function(err) {
                 if (err) {
@@ -155,7 +155,7 @@ route.put('/api/users/:id',(req,res)=>{
 route.delete('/api/users/:id',(req,res)=>{
     const id = req.params.id;
 
-    db.get("SELECT * FROM users WHERE id = ?", [id], (err, user) => {
+    getDb.get("SELECT * FROM users WHERE id = ?", [id], (err, user) => {
         if (err) {
             console.error('Database error:', err);
             return res.status(500).json({message: "Error fetching user"});
@@ -165,7 +165,7 @@ route.delete('/api/users/:id',(req,res)=>{
             return res.status(404).json({message: "User not found"});
         }
         
-        db.run("DELETE FROM users WHERE id = ?", [id], (err) => {
+        getDb.run("DELETE FROM users WHERE id = ?", [id], (err) => {
             if (err) {
                 console.error('Delete error:', err);
                 return res.status(500).json({message: "Error deleting user"});
@@ -187,7 +187,7 @@ route.post('/blogs', async (req, res)=>{
     console.log(req.body);
 
     try{
-        db.run("INSERT INTO blogs (title, description, username) VALUES (?, ?, ?)", 
+        getDb.run("INSERT INTO blogs (title, description, username) VALUES (?, ?, ?)", 
             [req.body.title, req.body.description, req.body.username], 
             function(err) {
                 if (err) {
@@ -210,7 +210,7 @@ route.post('/blogs', async (req, res)=>{
 })
 
 route.get('/blogs',(req,res)=>{
-    db.all("SELECT * FROM blogs ORDER BY created_at DESC", (err, blogs) => {
+    getDb.all("SELECT * FROM blogs ORDER BY created_at DESC", (err, blogs) => {
         if (err) {
             console.error('Blog fetch error:', err);
             return res.status(500).json({message: "Error fetching blogs"});
@@ -290,7 +290,7 @@ route.get("/view-blog/:id", async (req, res)=>{
     console.log(id)
     let blog;
     try {
-        db.get("SELECT * FROM blogs WHERE id = ?", [id], (err, row) => {
+        getDb.get("SELECT * FROM blogs WHERE id = ?", [id], (err, row) => {
             if (err) {
                 console.error('Blog fetch error:', err);
                 return res.status(500).json({message: "Error fetching blog"});

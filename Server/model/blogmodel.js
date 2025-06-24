@@ -1,23 +1,52 @@
-const mongoose = require('mongoose');
+const { getDb } = require('../database/sqlite');
 
-//title blogs image createdAt
-
-const BlogsSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required: true
-    },
-    description:{
-        type:String,
-        required:true
-    },
-    username:{
-        type:String,
-    },
-    createdAt:{
-        type: Date,
-        default: Date.now
+class BlogModel {
+    static async create(blogData) {
+        return new Promise((resolve, reject) => {
+            const db = getDb();
+            const { title, description, username } = blogData;
+            
+            db.run(
+                'INSERT INTO blogs (title, description, username) VALUES (?, ?, ?)',
+                [title, description, username],
+                function(err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ id: this.lastID, title, description, username });
+                    }
+                }
+            );
+        });
     }
-});
 
-module.exports = mongoose.model('blogs',BlogsSchema);
+    static async findAll() {
+        return new Promise((resolve, reject) => {
+            const db = getDb();
+            
+            db.all('SELECT * FROM blogs ORDER BY created_at DESC', (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
+    static async findById(id) {
+        return new Promise((resolve, reject) => {
+            const db = getDb();
+            
+            db.get('SELECT * FROM blogs WHERE id = ?', [id], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
+    }
+}
+
+module.exports = BlogModel;
