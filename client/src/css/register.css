@@ -110,14 +110,45 @@ body, .register-bg {
     box-shadow: 0 8px 25px rgba(211, 84, 0, 0.18);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .register-card {
-        padding: 1.5rem 0.5rem;
         max-width: 95vw;
+        padding: 1.2rem 0.8rem;
     }
     .register-card h1 {
         font-size: 1.5rem;
     }
+}
+@media (max-width: 600px) {
+    .register-main-container {
+        min-height: 100vh;
+        padding: 1rem 0.5rem;
+    }
+    .register-card {
+        max-width: 98vw;
+        padding: 1rem 0.5rem;
+    }
+    .register-card h1 {
+        font-size: 1.2rem;
+    }
+    .register-card input[type="text"],
+    .register-card input[type="email"],
+    .register-card input[type="tel"],
+    .register-card input[type="password"] {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+}
+@media (max-width: 400px) {
+    .register-card {
+        padding: 0.5rem 0.2rem;
+    }
+    .register-card h1 {
+        font-size: 1rem;
+    }
+}
+body {
+    overflow-x: hidden;
 }
 
 .login-link {

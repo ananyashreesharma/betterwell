@@ -291,26 +291,36 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .fs-heading h1 {
-        font-size: 2rem;
-    }
-    
-    .helpline-cards,
-    .online-support-cards,
-    .support-groups-cards,
-    .self-help-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .support-sections {
-        padding: 0 1rem;
-    }
+@media (max-width: 900px) {
+  .findsup-container, .findsup-card, .findsup-section {
+    max-width: 95vw;
+    padding: 1.2rem 0.8rem;
+  }
+  .findsup-title {
+    font-size: 1.5rem;
+  }
 }
-
 @media (max-width: 600px) {
-    .findsup-comp {
-        padding-top: 120px;
-        width: 100%;
-    }
+  .findsup-container, .findsup-card, .findsup-section {
+    max-width: 100vw;
+    padding: 1rem 0.5rem;
+  }
+  .findsup-title {
+    font-size: 1.2rem;
+  }
+  .findsup-card {
+    font-size: 1rem;
+    padding: 1rem 0.5rem;
+  }
+}
+@media (max-width: 400px) {
+  .findsup-container, .findsup-card, .findsup-section {
+    padding: 0.5rem 0.2rem;
+  }
+  .findsup-title {
+    font-size: 1rem;
+  }
+}
+body {
+  overflow-x: hidden;
 }

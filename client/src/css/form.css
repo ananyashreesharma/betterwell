@@ -156,6 +156,9 @@ body, .formblog-container {
         max-width: 95vw;
         padding: 1.2rem 0.8rem;
     }
+    .formblog-title {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -168,6 +171,30 @@ body, .formblog-container {
         max-width: 98vw;
         padding: 1rem 0.5rem;
     }
+    .formblog-title {
+        font-size: 1.2rem;
+    }
+    .form-group input, .form-group textarea {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+    .buttons {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .formblog-wrapper {
+        padding: 0.5rem 0.2rem;
+    }
+    .formblog-title {
+        font-size: 1rem;
+    }
+}
+
+body {
+    overflow-x: hidden;
 }
 
 /* Animation for form appearance */

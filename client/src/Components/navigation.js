@@ -22,29 +22,37 @@ const Navigation = () => {
         setShowLinks(!showLinks);
     }
 
+    const closeMenu = () => {
+        setShowLinks(false);
+    }
+
     return (
         <nav className='navbar'>
             <div className="nav-container">
-                <Link to="/" className="nav-logo">Better-Wellness</Link>
-                <ul className={`nav-menu${showLinks ? ' active' : ''}`}>
-                    <li><Link to="/" className={`nav-link${location.pathname === '/' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Home</Link></li>
-                    <li><Link to="/write-blogs" className={`nav-link${location.pathname === '/write-blogs' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Write Blogs</Link></li>
-                    <li><Link to="/view-blogs" className={`nav-link${location.pathname === '/view-blogs' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>View Blogs</Link></li>
-                    <li><Link to="/find-support" className={`nav-link${location.pathname === '/find-support' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Find Support</Link></li>
+                <Link to="/" className="nav-logo" onClick={closeMenu}>Better-Wellness</Link>
+                <button
+                    className={`nav-toggle${showLinks ? ' open' : ''}`}
+                    onClick={toggleMenu}
+                    aria-label="Toggle navigation menu"
+                    aria-expanded={showLinks}
+                    aria-controls="nav-menu"
+                >
+                    <span role="img" aria-label="menu">❤️</span>
+                </button>
+                <ul id="nav-menu" className={`nav-menu${showLinks ? ' active' : ''}`}>
+                    <li><Link to="/" className={`nav-link${location.pathname === '/' ? ' active' : ''}`} onClick={closeMenu}>Home</Link></li>
+                    <li><Link to="/write-blogs" className={`nav-link${location.pathname === '/write-blogs' ? ' active' : ''}`} onClick={closeMenu}>Write Blogs</Link></li>
+                    <li><Link to="/view-blogs" className={`nav-link${location.pathname === '/view-blogs' ? ' active' : ''}`} onClick={closeMenu}>View Blogs</Link></li>
+                    <li><Link to="/find-support" className={`nav-link${location.pathname === '/find-support' ? ' active' : ''}`} onClick={closeMenu}>Find Support</Link></li>
                     {localStorage.getItem("name") ? (
-                        <li><span className="nav-link" style={{cursor: 'pointer'}} onClick={removeLocalStorage}>Logout</span></li>
+                        <li><span className="nav-link" style={{cursor: 'pointer'}} onClick={() => { removeLocalStorage(); closeMenu(); }}>Logout</span></li>
                     ) : (
                         <>
-                            <li><Link to="/login" className={`nav-link${location.pathname === '/login' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Login</Link></li>
-                            <li><Link to="/register" className={`nav-link${location.pathname === '/register' ? ' active' : ''}`} onClick={() => setShowLinks(false)}>Register</Link></li>
+                            <li><Link to="/login" className={`nav-link${location.pathname === '/login' ? ' active' : ''}`} onClick={closeMenu}>Login</Link></li>
+                            <li><Link to="/register" className={`nav-link${location.pathname === '/register' ? ' active' : ''}`} onClick={closeMenu}>Register</Link></li>
                         </>
                     )}
                 </ul>
-                <button className="nav-toggle" onClick={toggleMenu} aria-label="Toggle navigation menu">
-                    <span className="line"></span>
-                    <span className="line"></span>
-                    <span className="line"></span>
-                </button>
             </div>
         </nav>
     )
