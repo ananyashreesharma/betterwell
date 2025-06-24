@@ -29,7 +29,7 @@ const Formblog =()=> {
                 <form onSubmit={blogDetails} encType="multipart/form-data" id="add-blog">  
                     <div className="new_blog">
                         <div className="form-group">
-                            <label htmlFor="name" className="">Blog Title</label>
+                            <label htmlFor="name" className=""></label>
                             <input type="hidden" name="id" value="" />
                             <input type="text"
                                 value={title}
@@ -40,7 +40,7 @@ const Formblog =()=> {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="content" className="">Blog Content</label>
+                            <label htmlFor="content" className=""></label>
                             <textarea name="description" 
                                 value={description}
                                 onChange={(e)=>setDescription(e.target.value)}
@@ -51,7 +51,7 @@ const Formblog =()=> {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username"></label>
                             <input type="text" 
                                 value={username}
                                 onChange={(e)=>setUsername(e.target.value)}
