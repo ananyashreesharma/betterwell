@@ -34,7 +34,7 @@ app.use(express.static('uploads'));
 //cors middleware - updated for production
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://your-app-name.vercel.app', 'https://your-app-name.vercel.app/'] 
+        ? [process.env.FRONTEND_URL || 'https://your-vercel-app.vercel.app'] 
         : ['http://localhost:3000', 'http://localhost:3001'],
     credentials: true
 }));

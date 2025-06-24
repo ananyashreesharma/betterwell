@@ -10,7 +10,7 @@ const Homeblog = () => {
 
     // Use environment-based API URL
     const API_BASE_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://your-app-name.vercel.app/api' 
+        ? process.env.REACT_APP_API_URL || 'https://your-vercel-app.vercel.app/api' 
         : 'http://localhost:5000/api';
 
     useEffect(() => {
