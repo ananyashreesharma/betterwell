@@ -11,48 +11,15 @@ const Formblog =()=> {
     const[isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
    
-    // Use environment-based API URL
-    const API_BASE_URL = process.env.NODE_ENV === 'production' 
-        ? process.env.REACT_APP_API_URL || 'https://your-vercel-app.vercel.app/api' 
-        : 'http://localhost:5000/api';
-   
     async function blogDetails(event){
         event.preventDefault();
         setIsSubmitting(true);
         
-        // Check if we're in production (no backend)
-        if (process.env.NODE_ENV === 'production') {
-            // Simulate successful upload
-            setTimeout(() => {
-                alert('Blog uploaded successfully! (Demo mode - no backend connected)');
-                navigate('/view-blogs');
-            }, 1000);
-            return;
-        }
-        
-        // Try to connect to backend if available
-        try {
-            const response = await fetch(`${API_BASE_URL}/blogs`,{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    title,
-                    description,
-                    username
-                })
-            }) 
-            const data = await response.json();
-            console.log(data);
-            alert('Blog uploaded successfully!');
+        // Demo mode - simulate successful upload
+        setTimeout(() => {
+            alert('Blog uploaded successfully! (Demo mode - backend will be added soon)');
             navigate('/view-blogs');
-        } catch (error) {
-            console.error('Error uploading blog:', error);
-            alert('Error uploading blog. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
+        }, 1000);
     }  
 
     return (

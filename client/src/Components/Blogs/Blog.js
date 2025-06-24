@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import '../../css/viewblog.css';
 
 const Blog = () => {
@@ -9,17 +8,39 @@ const Blog = () => {
     const [error, setError] = useState(null);
     const { id } = useParams();
 
-    // Use environment-based API URL
-    const API_BASE_URL = process.env.NODE_ENV === 'production' 
-        ? process.env.REACT_APP_API_URL || 'https://your-vercel-app.vercel.app' 
-        : 'http://localhost:5000';
-
     useEffect(() => {
         const fetchBlog = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get(`${API_BASE_URL}/view-blog/${id}`);
-                setBlog(res.data.blog);
+                
+                // Demo blogs for production
+                const demoBlogs = {
+                    '1': {
+                        id: '1',
+                        title: 'Welcome to Better-Wellness',
+                        description: 'This is a demo blog post. In a full deployment, you would see real blogs here. The backend API would need to be deployed separately to enable full blog functionality. This platform is designed to support mental health and wellness through community sharing and support.',
+                        username: 'Demo User'
+                    },
+                    '2': {
+                        id: '2',
+                        title: 'Mental Health Matters',
+                        description: 'Taking care of your mental health is just as important as physical health. Remember to practice self-care, reach out for support when needed, and be kind to yourself. Everyone deserves to feel supported and understood.',
+                        username: 'Wellness Advocate'
+                    },
+                    '3': {
+                        id: '3',
+                        title: 'Finding Your Inner Peace',
+                        description: 'Meditation, mindfulness, and finding activities that bring you joy can help create a sense of inner peace. Start with just 5 minutes a day. Small steps lead to big changes in your mental well-being.',
+                        username: 'Mindfulness Coach'
+                    }
+                };
+                
+                const demoBlog = demoBlogs[id];
+                if (demoBlog) {
+                    setBlog(demoBlog);
+                } else {
+                    setError('Blog not found');
+                }
             } catch (err) {
                 setError('Failed to load blog');
                 console.error('Error fetching blog:', err);
@@ -29,7 +50,7 @@ const Blog = () => {
         };
 
         fetchBlog();
-    }, [id, API_BASE_URL]);
+    }, [id]);
 
     if (loading) {
         return (
